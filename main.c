@@ -1,15 +1,15 @@
 #include "monty.h"
 
 unsigned int row;
-unsigned int operand;
+int *operand;
 stack_t *top;
+int flag;
 
 /**
  * main - a function that begins the entire progrom
  *
  * @argc: int
  * @argv: char **
- * @env: char **
  * Return: int
  */
 int main(int argc, char **argv)
@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	char *content = NULL;
 	char **token = NULL;
 
+	row = flag = 1;
 	if (argc < 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -29,6 +30,10 @@ int main(int argc, char **argv)
 		_free(content);
 
 		process_codes(token);
+		free_stack(top);
+		free_token(token);
+		if (!flag)
+			exit(EXIT_FAILURE);
 	}
 	else
 	{

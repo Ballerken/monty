@@ -19,7 +19,8 @@ void read_content(char **content, char *path)
 	rewind(file);
 
 	*content = (char *)malloc(file_size + 1);
-    fread(*content, 1, file_size, file);
+	memset(*content, '\0', file_size + 1);
+	fread(*content, 1, file_size, file);
 
-    fclose(file);
+	fclose(file);
 }

@@ -8,8 +8,8 @@
 
 #define _free(ptr) __free((void **)&(ptr))
 extern unsigned int row;
-extern unsigned int operand;
-
+extern int *operand;
+extern int flag;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -65,6 +65,7 @@ void push(stack_t **stack, int n);
 int pop(stack_t **stack);
 int is_empty(stack_t **stack, int depth);
 void print_stack(stack_t *stack);
+void free_stack(stack_t *stack);
 
 /*--- specials.c ---*/
 int _isspace(int c);

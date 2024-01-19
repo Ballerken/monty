@@ -9,10 +9,10 @@
  */
 int word_count(char *string, char *delim)
 {
-	int len, length = 0;
+	int len = 0, length = 0;
 	char *str = NULL, *word = NULL;
 
-	if (string == NULL)
+	if (!string)
 		return (0);
 
 	len = strlen(string) + 1;
@@ -109,7 +109,7 @@ void print_token(char **token)
 
 	while (token[i])
 	{
-		printf("%s\n",token[i]);
+		printf("%s\n", token[i]);
 		i++;
 	}
 }
@@ -123,13 +123,16 @@ void print_token(char **token)
  */
 void free_token(char **token)
 {
-	int i;
-	int length = token_len(token);
-
-	for (i = 0; i < length; i++)
+	if (!token)
 	{
-		_free(token[i]);
-	}
+		int i;
+		int length = token_len(token);
 
-	_free(token);
+		for (i = 0; i < length; i++)
+		{
+			_free(token[i]);
+		}
+
+		_free(token);
+	}
 }
